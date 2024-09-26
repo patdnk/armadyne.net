@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ARMADYNE</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #333; /* Dark gray background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .svg-container {
+      width: 50%;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Modify the colors of the SVG */
+    .cls-1 {
+      fill: none; /* No fill for outlines */
+      stroke: #000; /* Black stroke */
+      stroke-width: 2; /* Stroke thickness */
+    }
+
+    .cls-2 {
+      fill: none; /* No fill for outlines */
+      stroke: #ccc; /* Light gray stroke */
+      stroke-width: 2; /* Stroke thickness */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="svg-container">
+    <!-- SVG with modified styles for outlines -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 600">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: none; /* No fill */
+            stroke: #000; /* Black outline */
+            stroke-width: 2; /* Stroke width */
+          }
+
+          .cls-2 {
+            fill: none; /* No fill */
+            stroke: #ccc; /* Light gray outline */
+            stroke-width: 2; /* Stroke width */
+          }
+        </style>
+      </defs>
+      <g>
+        <g id="Layer_1">
+          <path class="cls-2" d="M257.85,205.9h115.21v-69.47h-76.8l-131.35,130.13h-79.98c62.37-62.62,125.72-124.25,187.85-186.87h157.03v126.21h160.46l70.44-69.47h-214.02l56.01-56.75h212.31v82.43l-101.51,100.53h-183.69v23.97l-56.75,56.01v-79.98h-171.46l56.26-56.75Z"/>
+          <path class="cls-1" d="M599.31,394.73l-24.95-40.85h-38.16l-16.39,28.62-16.14-28.62h-23.73l5.09,8.75c-5.69-5.34-13.49-8.75-23.44-8.75h-39.62v72.21l-27.88-72.21h-22.01l-25.93,67.14v-67.14h-31.06l-14.19,44.52-13.94-44.52h-31.06v60.56c-3.12-8.83-7.35-16.86-17.12-21.42,17.61-9.3,13.94-39.14-11.74-39.14h-43.78v67.14l-25.93-67.14h-22.01l-28.62,74.11h22.26l
