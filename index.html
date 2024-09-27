@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ARMADYNE</title>
+  <title>SVG Logo Page</title>
   <style>
     * {
       margin: 0;
@@ -13,7 +13,8 @@
     }
 
     body {
-      background-color: #333; /* Dark gray background */
+      /* Gradient background from light gray to dark gray */
+      background: linear-gradient(to bottom, #999, #333);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,16 +30,10 @@
       height: auto;
     }
 
-    /* Modify the colors of the SVG */
-    .cls-1 {
+    /* Modify the colors of the SVG for outlines */
+    .cls-1, .cls-2 {
       fill: none; /* No fill for outlines */
-      stroke: #000; /* Black stroke */
-      stroke-width: 2; /* Stroke thickness */
-    }
-
-    .cls-2 {
-      fill: none; /* No fill for outlines */
-      stroke: #ccc; /* Light gray stroke */
+      stroke: #ccc; /* Light gray outline for both parts */
       stroke-width: 2; /* Stroke thickness */
     }
   </style>
@@ -46,24 +41,28 @@
 <body>
 
   <div class="svg-container">
-    <!-- SVG with modified styles for outlines -->
+    <!-- SVG with light gray outlines for both paths -->
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 600">
       <defs>
         <style>
-          .cls-1 {
+          .cls-1, .cls-2 {
             fill: none; /* No fill */
-            stroke: #000; /* Black outline */
-            stroke-width: 2; /* Stroke width */
-          }
-
-          .cls-2 {
-            fill: none; /* No fill */
-            stroke: #ccc; /* Light gray outline */
+            stroke: #ccc; /* Light gray outline for both parts */
             stroke-width: 2; /* Stroke width */
           }
         </style>
       </defs>
       <g>
         <g id="Layer_1">
+          <!-- First part with light gray outline -->
           <path class="cls-2" d="M257.85,205.9h115.21v-69.47h-76.8l-131.35,130.13h-79.98c62.37-62.62,125.72-124.25,187.85-186.87h157.03v126.21h160.46l70.44-69.47h-214.02l56.01-56.75h212.31v82.43l-101.51,100.53h-183.69v23.97l-56.75,56.01v-79.98h-171.46l56.26-56.75Z"/>
-          <path class="cls-1" d="M599.31,394.73l-24.95-40.85h-38.16l-16.39,28.62-16.14-28.62h-23.73l5.09,8.75c-5.69-5.34-13.49-8.75-23.44-8.75h-39.62v72.21l-27.88-72.21h-22.01l-25.93,67.14v-67.14h-31.06l-14.19,44.52-13.94-44.52h-31.06v60.56c-3.12-8.83-7.35-16.86-17.12-21.42,17.61-9.3,13.94-39.14-11.74-39.14h-43.78v67.14l-25.93-67.14h-22.01l-28.62,74.11h22.26l
+          
+          <!-- Second part with light gray outline -->
+          <path class="cls-1" d="M599.31,394.73l-24.95-40.85h-38.16l-16.39,28.62-16.14-28.62h-23.73l5.09,8.75c-5.69-5.34-13.49-8.75-23.44-8.75h-39.62v72.21l-27.88-72.21h-22.01l-25.93,67.14v-67.14h-31.06l-14.19,44.52-13.94-44.52h-31.06v60.56c-3.12-8.83-7.35-16.86-17.12-21.42,17.61-9.3,13.94-39.14-11.74-39.14h-43.78v67.14l-25.93-67.14h-22.01l-28.62,74.11h22.26l3.42-11.25h25.93l3.18,11.25h44.03v-26.17h12.72c9.05,0,14.68,1.96,15.16,12.23v13.94h44.52v-43.54l13.7,43.54h18.59l13.7-43.54v43.54h41.58l3.67-11.25h25.93l3.18,11.25h63.35c28.03,0,39.12-26.94,33.35-48.34l13.62,23.39v24.95h22.5v-24.95l20.79-35.42v60.36h22.26v-41.34l25.19,41.34h22.26v-74.11h-22.26v40.85ZM145.58,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM217.24,386.91h-11.74v-15.9h11.74c11.74,0,11.74,15.9,0,15.9ZM382.35,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM458.91,409.66c-.98,0-2.2.24-3.43.24h-11.25v-38.16h11.25c1.22,0,2.45.25,3.43.49,19.57,3.18,19.57,34,0,37.42ZM649.2,410.63v-12.72h37.91v-14.19h-37.91v-12.72h41.58v-17.12h-63.59v74.11h66.04v-17.37h-44.03Z"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+</body>
+</html>
