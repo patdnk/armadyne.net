@@ -13,51 +13,139 @@
     }
 
     body {
-      /* Gradient background from black to dark gray */
-      background: linear-gradient(to bottom, #000, #333);
+      /* Animated gradient background */
+      background: linear-gradient(-45deg, #000, #333, #1a1a1a, #2d2d2d);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .svg-container {
       width: 50%;
+      position: relative;
+      animation: fadeInUp 2s ease-out, float 6s ease-in-out infinite;
+      animation-delay: 0s, 2s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
 
     svg {
       width: 100%;
       height: auto;
+      filter: drop-shadow(0 0 20px rgba(255, 51, 51, 0.3));
+      transition: filter 0.3s ease;
     }
 
-    /* Modify the colors of the SVG for darker outlines */
+    svg:hover {
+      filter: drop-shadow(0 0 30px rgba(255, 51, 51, 0.6));
+    }
+
+    /* SVG path animations */
     .cls-1, .cls-2 {
-      fill: none; /* No fill for outlines */
-      stroke: #666; /* Dark gray outline for both parts */
-      stroke-width: 2; /* Stroke thickness */
+      fill: #ff3333;
+      stroke: #ff3333;
+      stroke-width: 2;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawPath 3s ease-in-out forwards;
+      transition: stroke 0.3s ease, fill 0.3s ease;
+    }
+
+    .cls-1 {
+      animation-delay: 0.5s;
+    }
+
+    .cls-2 {
+      animation-delay: 1s;
+    }
+
+    @keyframes drawPath {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Hover effects */
+    .svg-container:hover .cls-1,
+    .svg-container:hover .cls-2 {
+      stroke: #ff3333;
+      fill: #ff3333;
+      stroke-width: 3;
+    }
+
+    /* Add some sparkle effects */
+    .svg-container::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      right: -50px;
+      bottom: -50px;
+      background: radial-gradient(circle, transparent 1px, rgba(102, 102, 102, 0.1) 1px);
+      background-size: 20px 20px;
+      animation: sparkle 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sparkle {
+      0% { transform: translateX(0) translateY(0); }
+      25% { transform: translateX(10px) translateY(-5px); }
+      50% { transform: translateX(-5px) translateY(10px); }
+      75% { transform: translateX(-10px) translateY(-5px); }
+      100% { transform: translateX(0) translateY(0); }
+    }
+
+    /* Text styling */
+    text {
+      fill: #999;
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 <body>
 
   <div class="svg-container">
-    <!-- SVG with darker gray outlines for both paths -->
+    <!-- SVG with red fill and stroke -->
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 600">
       <defs>
         <style>
           .cls-1, .cls-2 {
-            fill: none; /* No fill */
-            stroke: #666; /* Darker gray outline for both parts */
+            fill: #ff3333; /* Red fill */
+            stroke: #ff3333; /* Red stroke */
             stroke-width: 2; /* Stroke width */
           }
         </style>
       </defs>
       <g>
         <g id="Layer_1">
-          <!-- First part with darker gray outline -->
+          <!-- First part with red fill and stroke -->
           <path class="cls-2" d="M257.85,205.9h115.21v-69.47h-76.8l-131.35,130.13h-79.98c62.37-62.62,125.72-124.25,187.85-186.87h157.03v126.21h160.46l70.44-69.47h-214.02l56.01-56.75h212.31v82.43l-101.51,100.53h-183.69v23.97l-56.75,56.01v-79.98h-171.46l56.26-56.75Z"/>
           
-          <!-- Second part with darker gray outline -->
+          <!-- Second part with red fill and stroke -->
           <path class="cls-1" d="M599.31,394.73l-24.95-40.85h-38.16l-16.39,28.62-16.14-28.62h-23.73l5.09,8.75c-5.69-5.34-13.49-8.75-23.44-8.75h-39.62v72.21l-27.88-72.21h-22.01l-25.93,67.14v-67.14h-31.06l-14.19,44.52-13.94-44.52h-31.06v60.56c-3.12-8.83-7.35-16.86-17.12-21.42,17.61-9.3,13.94-39.14-11.74-39.14h-43.78v67.14l-25.93-67.14h-22.01l-28.62,74.11h22.26l3.42-11.25h25.93l3.18,11.25h44.03v-26.17h12.72c9.05,0,14.68,1.96,15.16,12.23v13.94h44.52v-43.54l13.7,43.54h18.59l13.7-43.54v43.54h41.58l3.67-11.25h25.93l3.18,11.25h63.35c28.03,0,39.12-26.94,33.35-48.34l13.62,23.39v24.95h22.5v-24.95l20.79-35.42v60.36h22.26v-41.34l25.19,41.34h22.26v-74.11h-22.26v40.85ZM145.58,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM217.24,386.91h-11.74v-15.9h11.74c11.74,0,11.74,15.9,0,15.9ZM382.35,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM458.91,409.66c-.98,0-2.2.24-3.43.24h-11.25v-38.16h11.25c1.22,0,2.45.25,3.43.49,19.57,3.18,19.57,34,0,37.42ZM649.2,410.63v-12.72h37.91v-14.19h-37.91v-12.72h41.58v-17.12h-63.59v74.11h66.04v-17.37h-44.03Z"/>
         </g>
       </g>
