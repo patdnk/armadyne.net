@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SVG Logo Page</title>
+  <title>ARMADYNE</title>
   <style>
     * {
       margin: 0;
@@ -34,6 +34,9 @@
       width: 100%;
       height: 100vh;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       animation: fadeInUp 2s ease-out, float 6s ease-in-out infinite;
       animation-delay: 0s, 2s;
     }
@@ -55,14 +58,14 @@
     }
 
     svg {
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 0 20px rgba(255, 51, 51, 0.3));
+      width: 80%;
+      height: 80%;
+      filter: drop-shadow(0 0 10px rgba(255, 51, 51, 0.3));
       transition: filter 0.3s ease;
     }
 
     svg:hover {
-      filter: drop-shadow(0 0 30px rgba(255, 51, 51, 0.6));
+      filter: drop-shadow(0 0 15px rgba(255, 51, 51, 0.6));
     }
 
     /* SVG path animations */
@@ -74,16 +77,17 @@
       transition: stroke 0.3s ease, fill 0.3s ease;
     }
 
-    /* Logo part (first path) - red */
+    /* Logo part - custom red */
     .cls-2 {
-      fill: #ff3333;
-      stroke: #ff3333;
+      fill: #D81E1E;
+      stroke: #A61717;
     }
 
-    /* Text part (second path) - grey */
+    /* Text part - white with grey outline */
     .cls-1 {
-      fill: #999;
+      fill: #FFF;
       stroke: #999;
+      stroke-width: 1;
     }
 
     .cls-1 {
@@ -102,15 +106,15 @@
 
     /* Hover effects */
     .svg-container:hover .cls-2 {
-      stroke: #ff3333;
-      fill: #ff3333;
+      stroke: #A61717;
+      fill: #D81E1E;
       stroke-width: 3;
     }
 
     .svg-container:hover .cls-1 {
       stroke: #999;
-      fill: #999;
-      stroke-width: 3;
+      fill: #FFF;
+      stroke-width: 2;
     }
 
     /* Add some sparkle effects */
@@ -150,14 +154,14 @@
       <defs>
         <style>
           .cls-2 {
-            fill: #ff3333; /* Red fill for logo */
-            stroke: #ff3333; /* Red stroke for logo */
+            fill: #D81E1E; /* Custom red fill for logo */
+            stroke: #A61717; /* Darker red stroke for logo */
             stroke-width: 2; /* Stroke width */
           }
           .cls-1 {
-            fill: #999; /* Grey fill for text */
-            stroke: #999; /* Grey stroke for text */
-            stroke-width: 2; /* Stroke width */
+            fill: #FFF; /* White fill for text */
+            stroke: #999; /* Grey outline for text */
+            stroke-width: 1; /* Thinner stroke width */
           }
         </style>
       </defs>
@@ -166,7 +170,7 @@
           <!-- Logo part with red fill and stroke -->
           <path class="cls-2" d="M257.85,205.9h115.21v-69.47h-76.8l-131.35,130.13h-79.98c62.37-62.62,125.72-124.25,187.85-186.87h157.03v126.21h160.46l70.44-69.47h-214.02l56.01-56.75h212.31v82.43l-101.51,100.53h-183.69v23.97l-56.75,56.01v-79.98h-171.46l56.26-56.75Z"/>
           
-          <!-- Text part with grey fill and stroke -->
+          <!-- Text part with white fill and grey outline -->
           <path class="cls-1" d="M599.31,394.73l-24.95-40.85h-38.16l-16.39,28.62-16.14-28.62h-23.73l5.09,8.75c-5.69-5.34-13.49-8.75-23.44-8.75h-39.62v72.21l-27.88-72.21h-22.01l-25.93,67.14v-67.14h-31.06l-14.19,44.52-13.94-44.52h-31.06v60.56c-3.12-8.83-7.35-16.86-17.12-21.42,17.61-9.3,13.94-39.14-11.74-39.14h-43.78v67.14l-25.93-67.14h-22.01l-28.62,74.11h22.26l3.42-11.25h25.93l3.18,11.25h44.03v-26.17h12.72c9.05,0,14.68,1.96,15.16,12.23v13.94h44.52v-43.54l13.7,43.54h18.59l13.7-43.54v43.54h41.58l3.67-11.25h25.93l3.18,11.25h63.35c28.03,0,39.12-26.94,33.35-48.34l13.62,23.39v24.95h22.5v-24.95l20.79-35.42v60.36h22.26v-41.34l25.19,41.34h22.26v-74.11h-22.26v40.85ZM145.58,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM217.24,386.91h-11.74v-15.9h11.74c11.74,0,11.74,15.9,0,15.9ZM382.35,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM458.91,409.66c-.98,0-2.2.24-3.43.24h-11.25v-38.16h11.25c1.22,0,2.45.25,3.43.49,19.57,3.18,19.57,34,0,37.42ZM649.2,410.63v-12.72h37.91v-14.19h-37.91v-12.72h41.58v-17.12h-63.59v74.11h66.04v-17.37h-44.03Z"/>
         </g>
       </g>
