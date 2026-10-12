@@ -2,180 +2,596 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ARMADYNE</title>
+  <meta name="description" content="ArmaDyne is a software holding company building products for hospitality and for everyday users.">
+  <meta name="theme-color" content="#f4f5f6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1c1f" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://armadyne.net/">
+  <meta property="og:title" content="ARMADYNE">
+  <meta property="og:description" content="A software holding company building products for hospitality and for everyday users.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='80 75 580 275'%3E%3Cpath fill='%23D81E1E' d='M257.85,205.9h115.21v-69.47h-76.8l-131.35,130.13h-79.98c62.37-62.62,125.72-124.25,187.85-186.87h157.03v126.21h160.46l70.44-69.47h-214.02l56.01-56.75h212.31v82.43l-101.51,100.53h-183.69v23.97l-56.75,56.01v-79.98h-171.46l56.26-56.75Z'/%3E%3C/svg%3E">
+
+  <!-- Apply the saved theme before first paint so there is no flash. -->
+  <script>
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch (e) {}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;1,400&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --page: #e9ecef;
+      --panel: #ffffff;
+      --panel-alt: #f4f5f6;
+      --text: #2b2b2b;
+      --muted: #6b6f75;
+      --rule: #dfe2e6;
+      --accent: #D81E1E;
+      --accent-dark: #A61717;
+      --word-fill: #2b2b2b;
+      --word-stroke: transparent;
+      --sky-top: #e4eaf1;
+      --sky-mid: #edf1f5;
+      --sky-bottom: #f5f7f9;
+      --grid: rgba(60, 80, 110, .07);
+      --grid-major: rgba(60, 80, 110, .14);
+      --node-bg: #ffffff;
+      --node-stroke: #9aa6b4;
+      --line: #a7b2bf;
+      --label: #3d4652;
+      --tag: #8a95a3;
+      --structure-light: #8a929c;
+      --shadow: 0 18px 50px rgba(30, 40, 55, .12);
+      color-scheme: light;
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --page: #1b1c1f;
+        --panel: #121315;
+        --panel-alt: #18191c;
+        --text: #e8e8e8;
+        --muted: #9a9ea5;
+        --rule: #2a2c30;
+        --accent: #E53535;
+        --accent-dark: #b52323;
+        --word-fill: #ffffff;
+        --word-stroke: #999999;
+        --sky-top: #070b12;
+        --sky-mid: #0b1220;
+        --sky-bottom: #111a2b;
+        --grid: rgba(140, 170, 210, .06);
+        --grid-major: rgba(140, 170, 210, .13);
+        --node-bg: #0f1622;
+        --node-stroke: #3d4c63;
+        --line: #34435a;
+        --label: #c9d3e0;
+        --tag: #5f6f86;
+        --structure-light: #4a5566;
+        --shadow: 0 18px 50px rgba(0, 0, 0, .5);
+        color-scheme: dark;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --page: #1b1c1f;
+      --panel: #121315;
+      --panel-alt: #18191c;
+      --text: #e8e8e8;
+      --muted: #9a9ea5;
+      --rule: #2a2c30;
+      --accent: #E53535;
+      --accent-dark: #b52323;
+      --word-fill: #ffffff;
+      --word-stroke: #999999;
+      --sky-top: #070b12;
+      --sky-mid: #0b1220;
+      --sky-bottom: #111a2b;
+      --grid: rgba(140, 170, 210, .06);
+      --grid-major: rgba(140, 170, 210, .13);
+      --node-bg: #0f1622;
+      --node-stroke: #3d4c63;
+      --line: #34435a;
+      --label: #c9d3e0;
+      --tag: #5f6f86;
+      --structure-light: #4a5566;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .5);
+      color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { -webkit-text-size-adjust: 100%; }
 
     body {
-      /* Animated gradient background */
-      background: linear-gradient(-45deg, #000, #333, #1a1a1a, #2d2d2d);
-      background-size: 400% 400%;
-      animation: gradientShift 8s ease infinite;
+      background: var(--page);
+      color: var(--text);
+      font-family: 'Barlow', system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
+      flex-direction: column;
+      transition: background-color .3s ease, color .3s ease;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
-    .svg-container {
-      width: 100%;
-      height: 100vh;
+    /* Header */
+    header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--rule);
       position: relative;
+      z-index: 2;
+      transition: background-color .3s ease;
+    }
+
+    .header-inner {
       display: flex;
-      justify-content: center;
       align-items: center;
-      animation: fadeInUp 2s ease-out, float 6s ease-in-out infinite;
-      animation-delay: 0s, 2s;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 18px;
+      padding-bottom: 18px;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .logo { display: block; width: 190px; flex-shrink: 0; }
+    .logo svg { display: block; width: 100%; height: auto; overflow: visible; }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
+    .logo .mark { fill: var(--accent); stroke: var(--accent-dark); stroke-width: 2; }
+    .logo .word { fill: var(--word-fill); stroke: var(--word-stroke); stroke-width: 1; }
 
-    svg {
-      width: 80%;
-      height: 80%;
-      filter: drop-shadow(0 0 10px rgba(255, 51, 51, 0.3));
-      transition: filter 0.3s ease;
+    .logo .mark, .logo .word {
+      stroke-dasharray: 1600;
+      stroke-dashoffset: 1600;
+      fill-opacity: 0;
+      animation: draw 1.6s ease-out forwards, fill .6s ease-out forwards;
     }
+    .logo .mark { stroke-width: 3; animation-delay: 0s, 1.1s; }
+    .logo .word { animation-delay: .35s, 1.35s; }
 
-    svg:hover {
-      filter: drop-shadow(0 0 15px rgba(255, 51, 51, 0.6));
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes fill { to { fill-opacity: 1; } }
+
+    .header-right { display: flex; align-items: center; gap: 14px; }
+
+    .tiles { display: flex; gap: 10px; list-style: none; }
+
+    .tile {
+      position: relative;
+      width: 108px;
+      height: 82px;
+      background: var(--panel-alt);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      overflow: hidden;
+      transition: background-color .3s ease, border-color .3s ease;
     }
-
-    /* SVG path animations */
-    .cls-1, .cls-2 {
-      stroke-width: 2;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: drawPath 3s ease-in-out forwards;
-      transition: stroke 0.3s ease, fill 0.3s ease;
+    .tile svg { width: 30px; height: 30px; stroke: var(--structure-light); fill: none; stroke-width: 1.6; }
+    .tile span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-
-    /* Logo part - custom red */
-    .cls-2 {
-      fill: #D81E1E;
-      stroke: #A61717;
-    }
-
-    /* Text part - white with grey outline */
-    .cls-1 {
-      fill: #FFF;
-      stroke: #999;
-      stroke-width: 1;
-    }
-
-    .cls-1 {
-      animation-delay: 0.5s;
-    }
-
-    .cls-2 {
-      animation-delay: 1s;
-    }
-
-    @keyframes drawPath {
-      to {
-        stroke-dashoffset: 0;
-      }
-    }
-
-    /* Hover effects */
-    .svg-container:hover .cls-2 {
-      stroke: #A61717;
-      fill: #D81E1E;
-      stroke-width: 3;
-    }
-
-    .svg-container:hover .cls-1 {
-      stroke: #999;
-      fill: #FFF;
-      stroke-width: 2;
-    }
-
-    /* Add some sparkle effects */
-    .svg-container::before {
+    .tile::after {
       content: '';
       position: absolute;
-      top: -50px;
-      left: -50px;
-      right: -50px;
-      bottom: -50px;
-      background: radial-gradient(circle, transparent 1px, rgba(102, 102, 102, 0.1) 1px);
-      background-size: 20px 20px;
-      animation: sparkle 4s linear infinite;
-      pointer-events: none;
+      right: 0;
+      bottom: 0;
+      border-style: solid;
+      border-width: 0 0 14px 14px;
+      border-color: transparent transparent var(--accent) transparent;
+    }
+    .tile.active { background: var(--accent); border-color: var(--accent); }
+    .tile.active svg { stroke: #fff; }
+    .tile.active span { color: #fff; }
+    .tile.active::after { border-color: transparent transparent #fff transparent; opacity: .85; }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--rule);
+      background: var(--panel-alt);
+      color: var(--muted);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: color .2s ease, border-color .2s ease, background-color .3s ease;
+    }
+    .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .theme-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+    .theme-toggle .moon { display: none; }
+    :root[data-theme="dark"] .theme-toggle .sun { display: none; }
+    :root[data-theme="dark"] .theme-toggle .moon { display: block; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle .sun { display: none; }
+      :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
     }
 
-    @keyframes sparkle {
-      0% { transform: translateX(0) translateY(0); }
-      25% { transform: translateX(10px) translateY(-5px); }
-      50% { transform: translateX(-5px) translateY(10px); }
-      75% { transform: translateX(-10px) translateY(-5px); }
-      100% { transform: translateX(0) translateY(0); }
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 60vh;
+      min-height: 360px;
+      max-height: 620px;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 55%, var(--sky-bottom) 100%);
+      transition: background .3s ease;
+    }
+    .hero svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .grid-minor { stroke: var(--grid); }
+    .grid-major { stroke: var(--grid-major); }
+    .link { fill: none; stroke: var(--line); stroke-width: 1.5; }
+    .flow { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 6 90; animation: flow 3.2s linear infinite; }
+    .flow.slow { animation-duration: 4.4s; }
+    .flow.rev { animation-direction: reverse; }
+    @keyframes flow { to { stroke-dashoffset: -96; } }
+    .joint { fill: var(--line); }
+    .node rect { fill: var(--node-bg); stroke: var(--node-stroke); stroke-width: 1.5; }
+    .node text, .hub text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: .14em;
+      fill: var(--label);
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    .node .tag, .hub .tag { font-size: 10px; font-weight: 500; letter-spacing: .12em; fill: var(--tag); text-anchor: start; }
+    .hub rect { fill: var(--node-bg); stroke: var(--accent); stroke-width: 2; }
+    .hub .core { fill: var(--accent); }
+    .tick { stroke: var(--tag); stroke-width: 1; }
+    .hero rect, .hero text, .hero line, .hero path { transition: fill .3s ease, stroke .3s ease; }
+
+    /* Content */
+    main { flex: 1; position: relative; z-index: 1; }
+
+    .panel {
+      background: var(--panel);
+      margin-top: -110px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      transition: background-color .3s ease;
     }
 
-    /* Text styling for any text elements */
-    text {
-      fill: #999;
-      font-family: Arial, sans-serif;
+    .intro { padding: 44px 48px 48px; }
+
+    .eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: clamp(32px, 4.4vw, 50px);
+      line-height: 1.08;
+      letter-spacing: -.005em;
+      margin-bottom: 26px;
+      text-wrap: balance;
+    }
+    h1 strong { color: var(--accent); font-weight: 600; }
+
+    .intro p { color: var(--muted); max-width: 54ch; margin-bottom: 16px; }
+    .intro p.lead { color: var(--text); }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 10px 16px;
+      border: 1px solid var(--rule);
+      background: var(--panel-alt);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .status .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 50% { opacity: .25; } }
+
+    .stats {
+      list-style: none;
+      border-left: 1px solid var(--rule);
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+    }
+    .stats li { padding: 18px 0; border-bottom: 1px solid var(--rule); }
+    .stats li:last-child { border-bottom: 0; }
+
+    .stat-num {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-num small { font-size: 18px; font-weight: 600; letter-spacing: .08em; }
+    .stat-label {
+      display: block;
+      margin-top: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .report {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--rule);
+      padding: 12px 48px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+      letter-spacing: .04em;
+    }
+
+    footer { padding: 28px 0 32px; font-size: 14px; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); }
+    footer a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Tablet / phone */
+    @media (max-width: 860px) {
+      .panel { grid-template-columns: 1fr; margin-top: -70px; }
+      .stats { border-left: 0; border-top: 1px solid var(--rule); padding: 8px 32px; flex-direction: row; flex-wrap: wrap; gap: 0 32px; }
+      .stats li { flex: 1 1 160px; border-bottom: 0; }
+      .report { padding: 12px 32px; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      .header-inner { flex-wrap: wrap; }
+      .logo { width: 150px; }
+      .header-right { width: 100%; justify-content: space-between; }
+      .tiles { flex: 1; }
+      .tile { flex: 1; width: auto; height: 64px; }
+      .tile svg { width: 22px; height: 22px; }
+      .hero { height: 38vh; min-height: 240px; }
+      .panel { margin-top: -48px; }
+      .intro { padding: 30px 22px 32px; }
+      .stats { padding: 4px 22px 12px; flex-direction: column; }
+      .stats li { border-bottom: 1px solid var(--rule); }
+      .stats li:last-child { border-bottom: 0; }
+      .stat-num { font-size: 46px; }
+      .report { padding: 12px 22px; text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo .mark, .logo .word { animation: none; stroke-dashoffset: 0; fill-opacity: 1; }
+      .status .dot, .flow { animation: none; }
+      .flow { display: none; }
+      body, header, .panel, .tile, .hero { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <div class="svg-container">
-    <!-- SVG with red fill and stroke -->
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 600">
+  <header>
+    <div class="wrap header-inner">
+      <a class="logo" href="/" aria-label="ArmaDyne home">
+        <svg viewBox="80 75 620 360" role="img" aria-hidden="true">
+          <path class="mark" d="M257.85,205.9h115.21v-69.47h-76.8l-131.35,130.13h-79.98c62.37-62.62,125.72-124.25,187.85-186.87h157.03v126.21h160.46l70.44-69.47h-214.02l56.01-56.75h212.31v82.43l-101.51,100.53h-183.69v23.97l-56.75,56.01v-79.98h-171.46l56.26-56.75Z"/>
+          <path class="word" d="M599.31,394.73l-24.95-40.85h-38.16l-16.39,28.62-16.14-28.62h-23.73l5.09,8.75c-5.69-5.34-13.49-8.75-23.44-8.75h-39.62v72.21l-27.88-72.21h-22.01l-25.93,67.14v-67.14h-31.06l-14.19,44.52-13.94-44.52h-31.06v60.56c-3.12-8.83-7.35-16.86-17.12-21.42,17.61-9.3,13.94-39.14-11.74-39.14h-43.78v67.14l-25.93-67.14h-22.01l-28.62,74.11h22.26l3.42-11.25h25.93l3.18,11.25h44.03v-26.17h12.72c9.05,0,14.68,1.96,15.16,12.23v13.94h44.52v-43.54l13.7,43.54h18.59l13.7-43.54v43.54h41.58l3.67-11.25h25.93l3.18,11.25h63.35c28.03,0,39.12-26.94,33.35-48.34l13.62,23.39v24.95h22.5v-24.95l20.79-35.42v60.36h22.26v-41.34l25.19,41.34h22.26v-74.11h-22.26v40.85ZM145.58,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM217.24,386.91h-11.74v-15.9h11.74c11.74,0,11.74,15.9,0,15.9ZM382.35,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM458.91,409.66c-.98,0-2.2.24-3.43.24h-11.25v-38.16h11.25c1.22,0,2.45.25,3.43.49,19.57,3.18,19.57,34,0,37.42ZM649.2,410.63v-12.72h37.91v-14.19h-37.91v-12.72h41.58v-17.12h-63.59v74.11h66.04v-17.37h-44.03Z"/>
+        </svg>
+      </a>
+
+      <div class="header-right">
+        <ul class="tiles" aria-label="Focus areas">
+          <li class="tile active">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27h22M7 27V11l9-6 9 6v16M13 27v-7h6v7M11 14h2M19 14h2"/></svg>
+            <span>Hospitality</span>
+          </li>
+          <li class="tile">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="10" y="4" width="12" height="24" rx="2.5"/><path d="M14.5 24.5h3"/></svg>
+            <span>Consumer</span>
+          </li>
+          <li class="tile">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5l11 5.5-11 5.5L5 10.5 16 5Z"/><path d="M5 16l11 5.5L27 16M5 21.5L16 27l11-5.5"/></svg>
+            <span>Platform</span>
+          </li>
+        </ul>
+
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Original illustration: a system flow diagram on a blueprint grid. -->
+  <section class="hero" aria-hidden="true">
+    <svg viewBox="0 0 1600 700" preserveAspectRatio="xMidYMin slice">
       <defs>
-        <style>
-          .cls-2 {
-            fill: #D81E1E; /* Custom red fill for logo */
-            stroke: #A61717; /* Darker red stroke for logo */
-            stroke-width: 2; /* Stroke width */
-          }
-          .cls-1 {
-            fill: #FFF; /* White fill for text */
-            stroke: #999; /* Grey outline for text */
-            stroke-width: 1; /* Thinner stroke width */
-          }
-        </style>
+        <pattern id="grid-minor" width="20" height="20" patternUnits="userSpaceOnUse"><path class="grid-minor" d="M20 0H0V20" fill="none" stroke-width="1"/></pattern>
+        <pattern id="grid-major" width="100" height="100" patternUnits="userSpaceOnUse"><path class="grid-major" d="M100 0H0V100" fill="none" stroke-width="1"/></pattern>
       </defs>
+      <rect width="1600" height="700" fill="url(#grid-minor)"/>
+      <rect width="1600" height="700" fill="url(#grid-major)"/>
+
       <g>
-        <g id="Layer_1">
-          <!-- Logo part with red fill and stroke -->
-          <path class="cls-2" d="M257.85,205.9h115.21v-69.47h-76.8l-131.35,130.13h-79.98c62.37-62.62,125.72-124.25,187.85-186.87h157.03v126.21h160.46l70.44-69.47h-214.02l56.01-56.75h212.31v82.43l-101.51,100.53h-183.69v23.97l-56.75,56.01v-79.98h-171.46l56.26-56.75Z"/>
-          
-          <!-- Text part with white fill and grey outline -->
-          <path class="cls-1" d="M599.31,394.73l-24.95-40.85h-38.16l-16.39,28.62-16.14-28.62h-23.73l5.09,8.75c-5.69-5.34-13.49-8.75-23.44-8.75h-39.62v72.21l-27.88-72.21h-22.01l-25.93,67.14v-67.14h-31.06l-14.19,44.52-13.94-44.52h-31.06v60.56c-3.12-8.83-7.35-16.86-17.12-21.42,17.61-9.3,13.94-39.14-11.74-39.14h-43.78v67.14l-25.93-67.14h-22.01l-28.62,74.11h22.26l3.42-11.25h25.93l3.18,11.25h44.03v-26.17h12.72c9.05,0,14.68,1.96,15.16,12.23v13.94h44.52v-43.54l13.7,43.54h18.59l13.7-43.54v43.54h41.58l3.67-11.25h25.93l3.18,11.25h63.35c28.03,0,39.12-26.94,33.35-48.34l13.62,23.39v24.95h22.5v-24.95l20.79-35.42v60.36h22.26v-41.34l25.19,41.34h22.26v-74.11h-22.26v40.85ZM145.58,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM217.24,386.91h-11.74v-15.9h11.74c11.74,0,11.74,15.9,0,15.9ZM382.35,401.34h-8.32l8.32-25.68.49-1.22,7.58,26.91h-8.07ZM458.91,409.66c-.98,0-2.2.24-3.43.24h-11.25v-38.16h11.25c1.22,0,2.45.25,3.43.49,19.57,3.18,19.57,34,0,37.42ZM649.2,410.63v-12.72h37.91v-14.19h-37.91v-12.72h41.58v-17.12h-63.59v74.11h66.04v-17.37h-44.03Z"/>
-        </g>
+        <path class="link" d="M385 130 H600 V240 H685"/>
+        <path class="link" d="M315 290 H560 V260 H685"/>
+        <path class="link" d="M465 440 H620 V280 H685"/>
+        <path class="link" d="M605 370 H750 V295"/>
+        <path class="link" d="M1215 130 H1000 V240 H915"/>
+        <path class="link" d="M1285 290 H1040 V260 H915"/>
+        <path class="link" d="M1135 440 H980 V280 H915"/>
+        <path class="link" d="M995 370 H850 V295"/>
+        <path class="link" d="M800 117 V225"/>
+      </g>
+      <g>
+        <path class="flow" d="M385 130 H600 V240 H685"/>
+        <path class="flow slow" d="M315 290 H560 V260 H685"/>
+        <path class="flow" d="M465 440 H620 V280 H685"/>
+        <path class="flow slow" d="M605 370 H750 V295"/>
+        <path class="flow rev" d="M1215 130 H1000 V240 H915"/>
+        <path class="flow slow rev" d="M1285 290 H1040 V260 H915"/>
+        <path class="flow rev" d="M1135 440 H980 V280 H915"/>
+        <path class="flow slow rev" d="M995 370 H850 V295"/>
+        <path class="flow slow" d="M800 117 V225"/>
+      </g>
+      <g>
+        <circle class="joint" cx="600" cy="130" r="3.5"/>
+        <circle class="joint" cx="600" cy="240" r="3.5"/>
+        <circle class="joint" cx="560" cy="290" r="3.5"/>
+        <circle class="joint" cx="560" cy="260" r="3.5"/>
+        <circle class="joint" cx="620" cy="440" r="3.5"/>
+        <circle class="joint" cx="620" cy="280" r="3.5"/>
+        <circle class="joint" cx="750" cy="370" r="3.5"/>
+        <circle class="joint" cx="1000" cy="130" r="3.5"/>
+        <circle class="joint" cx="1000" cy="240" r="3.5"/>
+        <circle class="joint" cx="1040" cy="290" r="3.5"/>
+        <circle class="joint" cx="1040" cy="260" r="3.5"/>
+        <circle class="joint" cx="980" cy="440" r="3.5"/>
+        <circle class="joint" cx="980" cy="280" r="3.5"/>
+        <circle class="joint" cx="850" cy="370" r="3.5"/>
+      </g>
+
+      <g>
+        <g class="node"><rect x="215" y="103" width="170" height="54"/><text x="300" y="132">RESERVATIONS</text><text class="tag" x="215" y="94">H-01</text></g>
+        <g class="node"><rect x="145" y="263" width="170" height="54"/><text x="230" y="292">POINT OF SALE</text><text class="tag" x="145" y="254">H-02</text></g>
+        <g class="node"><rect x="295" y="413" width="170" height="54"/><text x="380" y="442">KITCHEN DISPLAY</text><text class="tag" x="295" y="404">H-03</text></g>
+        <g class="node"><rect x="435" y="343" width="170" height="54"/><text x="520" y="372">PAYMENTS</text><text class="tag" x="435" y="334">H-04</text></g>
+        <g class="node"><rect x="1215" y="103" width="170" height="54"/><text x="1300" y="132">GUEST APP</text><text class="tag" x="1215" y="94">C-01</text></g>
+        <g class="node"><rect x="1285" y="263" width="170" height="54"/><text x="1370" y="292">NOTIFICATIONS</text><text class="tag" x="1285" y="254">C-02</text></g>
+        <g class="node"><rect x="1135" y="413" width="170" height="54"/><text x="1220" y="442">ACCOUNTS</text><text class="tag" x="1135" y="404">C-03</text></g>
+        <g class="node"><rect x="995" y="343" width="170" height="54"/><text x="1080" y="372">ANALYTICS</text><text class="tag" x="995" y="334">C-04</text></g>
+        <g class="node"><rect x="715" y="63" width="170" height="54"/><text x="800" y="92">API GATEWAY</text><text class="tag" x="715" y="54">P-01</text></g>
+      </g>
+
+      <g class="hub">
+        <rect x="685" y="225" width="230" height="70"/>
+        <rect class="core" x="685" y="225" width="6" height="70"/>
+        <text x="803" y="262">ARMADYNE PLATFORM</text>
+        <text class="tag" x="685" y="216">CORE &middot; P-00</text>
+      </g>
+
+      <g>
+        <path class="tick" d="M60 40 H80 M70 30 V50 M1520 40 H1540 M1530 30 V50"/>
+        <text class="tag" x="92" y="44" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.14em;fill:var(--tag)">SYSTEM OVERVIEW &middot; REV 01</text>
       </g>
     </svg>
-  </div>
+  </section>
 
+  <main>
+    <div class="wrap">
+      <article class="panel">
+        <div class="intro">
+          <p class="eyebrow">Software holding company</p>
+          <h1><strong>Build:</strong> Software for the places people gather, and the people in them.</h1>
+          <p class="lead">ArmaDyne builds and backs focused software products. We start where software meets real life: the restaurants, bars and hotels that run on tight margins and long hours, and the everyday apps people reach for between them.</p>
+          <p>Each product runs independently, sharing one standard of engineering, design and care underneath. The first products are on their way.</p>
+          <div class="status"><span class="dot"></span>First products launching soon</div>
+        </div>
+
+        <ul class="stats">
+          <li>
+            <span class="stat-num" data-count="2" data-pad="2">02</span>
+            <span class="stat-label">Focus markets: hospitality and consumer</span>
+          </li>
+          <li>
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">Built for operations that never close</span>
+          </li>
+          <li>
+            <span class="stat-num" data-count="1" data-pad="2">01</span>
+            <span class="stat-label">Shared platform behind every product</span>
+          </li>
+        </ul>
+
+        <p class="report">ArmaDyne &middot; Software for hospitality and everyday life</p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>&copy; 2026 ArmaDyne</span>
+      <a href="mailto:hello@armadyne.net">hello@armadyne.net</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Theme toggle: override the system preference and remember it.
+      var root = document.documentElement;
+      var dark = window.matchMedia('(prefers-color-scheme: dark)');
+      function isDark() {
+        return root.dataset.theme ? root.dataset.theme === 'dark' : dark.matches;
+      }
+      function syncThemeColor() {
+        var color = isDark() ? '#1b1c1f' : '#f4f5f6';
+        document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute('content', color); });
+      }
+      document.querySelector('.theme-toggle').addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        syncThemeColor();
+      });
+      if (root.dataset.theme) syncThemeColor();
+
+      // Stats count up once on load.
+      if (reduceMotion) return;
+      document.querySelectorAll('[data-count]').forEach(function (el) {
+        var target = parseFloat(el.dataset.count);
+        var decimals = parseInt(el.dataset.decimals || '0', 10);
+        var pad = parseInt(el.dataset.pad || '0', 10);
+        var start = performance.now() + 500;
+        var duration = 1400;
+        function format(v) {
+          var t = v.toFixed(decimals);
+          while (t.length < pad) t = '0' + t;
+          return t;
+        }
+        el.textContent = format(0);
+        function frame(now) {
+          var p = Math.min(Math.max((now - start) / duration, 0), 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = format(target * eased);
+          if (p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      });
+    })();
+  </script>
 </body>
 </html>
